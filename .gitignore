@@ -1,0 +1,7 @@
+out/
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+# Internal project tracking — not for public repo
+project-timeline.md

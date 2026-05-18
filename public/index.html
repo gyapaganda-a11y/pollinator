@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DeepSynthesis Pollinator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 40 40" width="32" height="32">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7CFFB2" />
+              <stop offset="50%" stop-color="#6EE7F9" />
+              <stop offset="100%" stop-color="#C084FC" />
+            </linearGradient>
+          </defs>
+          <circle cx="20" cy="20" r="6" fill="url(#g1)" />
+          <circle cx="20" cy="6" r="4" fill="url(#g1)" opacity=".85" />
+          <circle cx="20" cy="34" r="4" fill="url(#g1)" opacity=".85" />
+          <circle cx="6" cy="20" r="4" fill="url(#g1)" opacity=".85" />
+          <circle cx="34" cy="20" r="4" fill="url(#g1)" opacity=".85" />
+          <circle cx="10" cy="10" r="3" fill="url(#g1)" opacity=".6" />
+          <circle cx="30" cy="10" r="3" fill="url(#g1)" opacity=".6" />
+          <circle cx="10" cy="30" r="3" fill="url(#g1)" opacity=".6" />
+          <circle cx="30" cy="30" r="3" fill="url(#g1)" opacity=".6" />
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">Pollinate Studio</div>
+        <div class="brand-sub">free image generation · zero auth</div>
+        <div class="brand-credit">Created by Vincent of DeepSynthesis for free<span class="heart">&lt;3</span></div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a class="ghost-link" href="https://github.com" target="_blank" rel="noopener">github</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="composer">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="dot"></span>
+          <span class="panel-title">compose</span>
+        </div>
+
+        <label class="field">
+          <span class="label">prompt</span>
+          <textarea id="prompt" rows="4" placeholder="a smug pepe in an oval office political cartoon, hand-drawn boards style, flat colors, wobbly outline, white background"></textarea>
+        </label>
+        <div class="enhance-row">
+          <button id="enhance-btn" class="enhance-btn" type="button" title="Rewrite as a richer prompt using a free LLM">
+            <span class="enhance-spark">✦</span>
+            <span class="enhance-label">enhance prompt</span>
+          </button>
+        </div>
+
+        <div class="grid-3">
+          <label class="field">
+            <span class="label">model</span>
+            <select id="model">
+              <option value="flux">flux</option>
+              <option value="flux-realism">flux-realism</option>
+              <option value="flux-anime">flux-anime</option>
+              <option value="flux-3d">flux-3d</option>
+              <option value="turbo">turbo</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="label">variants</span>
+            <input id="n" type="number" min="1" max="8" value="2" />
+          </label>
+          <label class="field">
+            <span class="label">size</span>
+            <select id="size">
+              <option value="1024x1024">1024 × 1024</option>
+              <option value="768x1024">768 × 1024</option>
+              <option value="1024x768">1024 × 768</option>
+              <option value="1536x1024">1536 × 1024</option>
+              <option value="1024x1536">1024 × 1536</option>
+              <option value="512x512">512 × 512</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="grid-3">
+          <label class="field">
+            <span class="label">seed</span>
+            <input id="seed" type="text" placeholder="random" />
+          </label>
+          <label class="check">
+            <input id="nologo" type="checkbox" checked />
+            <span>strip watermark</span>
+          </label>
+          <label class="check">
+            <input id="enhance" type="checkbox" />
+            <span>server-side enhance</span>
+          </label>
+        </div>
+
+        <div class="row">
+          <button id="generate" class="btn-primary">
+            <span class="btn-label">generate</span>
+            <span class="btn-spinner" hidden></span>
+          </button>
+          <button id="clear" class="btn-ghost">clear</button>
+        </div>
+
+        <details class="presets">
+          <summary>preset prompt scaffolds</summary>
+          <div class="preset-grid">
+            <button class="preset" data-preset="boards">/pol/ boards pepe</button>
+            <button class="preset" data-preset="editorial">editorial cartoon</button>
+            <button class="preset" data-preset="sticker">vinyl sticker</button>
+            <button class="preset" data-preset="vaporwave">vaporwave</button>
+            <button class="preset" data-preset="photoreal">photoreal</button>
+            <button class="preset" data-preset="cyberpunk">cyberpunk neon</button>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div>
+          <h2>gallery</h2>
+          <div class="gallery-sub" id="gallery-count">loading…</div>
+        </div>
+        <div class="gallery-actions">
+          <button id="refresh" class="btn-ghost">refresh</button>
+        </div>
+      </div>
+      <div id="gallery" class="gallery"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-glyph">✦</div>
+        <div>no images yet. start with a prompt above.</div>
+      </div>
+    </section>
+  </main>
+
+  <a class="ds-badge" href="https://deepsynthesis.org" target="_blank" rel="noopener" title="DeepSynthesis">
+    <canvas class="lattice-globe-canvas" data-size="40" aria-hidden="true"></canvas>
+    <div class="ds-badge-text">
+      <span class="ds-badge-label">a node of</span>
+      <span class="ds-badge-name">DeepSynthesis</span>
+    </div>
+  </a>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <div class="lightbox-inner">
+      <img id="lightbox-img" alt="" />
+      <div class="lightbox-tools">
+        <button id="tool-bgremove" class="btn-tool" type="button">
+          <span class="tool-icon">⌬</span>
+          <span>remove background</span>
+        </button>
+        <span class="tool-sub">runs locally in your browser · free forever</span>
+      </div>
+      <div class="lightbox-meta">
+        <div id="lightbox-name" class="lightbox-name"></div>
+        <div class="lightbox-actions">
+          <a id="lightbox-download" class="btn-ghost" download>download</a>
+          <button id="lightbox-delete" class="btn-danger">delete</button>
+          <button id="lightbox-close" class="btn-ghost">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="busy" class="busy" hidden>
+    <div class="busy-card">
+      <div class="busy-spinner"></div>
+      <div id="busy-title" class="busy-title">working…</div>
+      <div id="busy-sub" class="busy-sub">this can take a minute on first run while the model downloads</div>
+      <div class="busy-bar"><div id="busy-bar-fill" class="busy-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <script src="/lattice-globe.js"></script>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

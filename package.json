@@ -1,0 +1,21 @@
+{
+  "name": "pollinate-studio",
+  "version": "0.1.0",
+  "description": "Free, zero-auth image generation studio. Local web GUI + CLI for pollinations.ai.",
+  "type": "module",
+  "main": "server.mjs",
+  "bin": {
+    "pollinate-studio": "./server.mjs",
+    "pollinate": "./gen.mjs"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "cli": "node gen.mjs"
+  },
+  "keywords": ["image-generation", "ai", "flux", "pollinations", "stable-diffusion", "cli", "free"],
+  "author": "Vincent Couey",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

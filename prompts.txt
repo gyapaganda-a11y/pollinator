@@ -1,0 +1,5 @@
+# One prompt per line. Lines starting with # are ignored.
+# Edit this list, then: node gen.mjs --file prompts.txt --n 2
+pepe the frog holding a sign that says PepePost, sticker art, thick white border, vibrant
+pepe the frog as a hacker in a hoodie, sticker art, thick white border, neon green
+smug pepe wearing sunglasses, vaporwave background, sticker art, thick white border
